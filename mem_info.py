@@ -1,16 +1,17 @@
 import psutil
+import converter
 
 
 def get_total_mem():
-    return psutil.virtual_memory().total
+    return converter.convert_from_byte(psutil.virtual_memory().total)
 
 
 def get_available_mem():
-    return psutil.virtual_memory().available
+    return converter.convert_from_byte(psutil.virtual_memory().available)
 
 
 def get_used_mem():
-    return psutil.virtual_memory().used
+    return converter.convert_from_byte(psutil.virtual_memory().used)
 
 
 def get_mem_used_percentage():
@@ -18,19 +19,19 @@ def get_mem_used_percentage():
 
 
 def get_mem_free():
-    return psutil.virtual_memory().free
+    return converter.convert_from_byte(psutil.virtual_memory().free)
 
 
 def get_swap_total():
-    return psutil.swap_memory().total
+    return converter.convert_from_byte(psutil.swap_memory().total)
 
 
 def get_swap_used():
-    return psutil.swap_memory().used
+    return converter.convert_from_byte(psutil.swap_memory().used)
 
 
 def get_swap_free():
-    return psutil.swap_memory().free
+    return converter.convert_from_byte(psutil.swap_memory().free)
 
 
 def get_swap_used_percent():
