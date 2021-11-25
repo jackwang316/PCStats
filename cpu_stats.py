@@ -13,8 +13,15 @@ def get_total_cpu_usage():
 
 
 def get_total_cpu_freq():
-    return {psutil.cpu_freq(percpu=False).current}
+    return str(int(psutil.cpu_freq(percpu=False).current)) + "Mhz"
 
 
-def get_cpu_count():
-    return psutil.cpu_count(logical=True)
+def get_phys_core_count():
+    return psutil.cpu_count(logical=False)
+
+
+def get_logical_core_count():
+    return psutil.cpu_count(logical=True) - get_phys_core_count()
+
+
+print(get_total_cpu_freq())
