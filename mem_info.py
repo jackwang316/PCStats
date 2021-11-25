@@ -15,7 +15,7 @@ def get_used_mem():
 
 
 def get_mem_used_percentage():
-    return round((get_used_mem() / get_total_mem()) * 100, 2)
+    return str(round((psutil.virtual_memory().used / psutil.virtual_memory().total) * 100, 2)) + "%"
 
 
 def get_mem_free():
@@ -35,7 +35,4 @@ def get_swap_free():
 
 
 def get_swap_used_percent():
-    return round((get_swap_used() / get_swap_total()) * 100, 2)
-
-
-print(get_total_mem())
+    return str(round((psutil.swap_memory().used / psutil.swap_memory().total) * 100, 2)) + "%"
