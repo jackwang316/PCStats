@@ -7,12 +7,13 @@ LABEL_PAD_Y = (10, 2)
 
 class MemGUI:
     mem_frame = None
+    master = None
+
     available_mem_label = None
     used_mem_label = None
     used_mem_percent_label = None
     free_mem_label = None
 
-    master = None
     swap_used_label = None
     swap_free_label = None
     swap_used_percent = None
@@ -22,6 +23,7 @@ class MemGUI:
         self.init_frame()
         self.init_titles()
         self.init_mem_vals()
+        self.init_swap_vals()
         self.updater()
 
     def init_frame(self):
@@ -56,21 +58,38 @@ class MemGUI:
 
     def init_mem_vals(self):
         total_mem_val = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_total_mem(), font="Arial 11")
-        total_mem_val.grid(sticky="n", column=1, row=1, pady=(0, 2), padx=(10, 15))
+        total_mem_val.grid(sticky="n", column=1, row=1, pady=(0, 2), padx=(10, 10))
 
         self.available_mem_label = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_available_mem(),
                                          font="Arial 11")
-        self.available_mem_label.grid(sticky="n", column=2, row=1, pady=(0, 2), padx=(10, 15))
+        self.available_mem_label.grid(sticky="n", column=2, row=1, pady=(0, 2), padx=(10, 10))
 
         self.used_mem_label = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_used_mem(), font="Arial 11")
-        self.used_mem_label.grid(sticky="n", column=3, row=1, pady=(0, 2), padx=(10, 15))
+        self.used_mem_label.grid(sticky="n", column=3, row=1, pady=(0, 2), padx=(10, 10))
 
         self.free_mem_label = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_mem_free(), font="Arial 11")
-        self.free_mem_label.grid(sticky="n", column=4, row=1, pady=(0, 2), padx=(10, 15))
+        self.free_mem_label.grid(sticky="n", column=4, row=1, pady=(0, 2), padx=(10, 10))
 
         self.used_mem_percent_label = Label(self.mem_frame, fg="DodgerBlue3",
                                             text=mem_info.get_mem_used_percentage(), font="Arial 11")
         self.used_mem_percent_label.grid(sticky="n", column=5, row=1, pady=(0, 2), padx=(10, 0))
+
+    def init_swap_vals(self):
+        total_swap_val = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_swap_total(), font="Arial 11")
+        total_swap_val.grid(sticky="n", column=1, row=2, pady=(10, 2), padx=(10, 10))
+
+        available_swap_val = Label(self.mem_frame, fg="DodgerBlue3", text="NONE", font="Arial 11")
+        available_swap_val.grid(sticky="n", column=2, row=2, pady=(10, 2), padx=(10, 10))
+
+        self.swap_used_label = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_swap_used(), font="Arial 11")
+        self.swap_used_label.grid(sticky="n", column=3, row=2, pady=(10, 2), padx=(10, 10))
+
+        self.swap_free_label = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_swap_free(), font="Arial 11")
+        self.swap_free_label.grid(sticky="n", column=4, row=2, pady=(10, 2), padx=(10, 10))
+
+        self.swap_used_percent = Label(self.mem_frame, fg="DodgerBlue3", text=mem_info.get_swap_used_percent(),
+                                       font="Arial 11")
+        self.swap_used_percent.grid(sticky="n", column=5, row=2, pady=(10, 2), padx=(10, 0))
 
     def update_avail_mem(self):
         self.available_mem_label.configure(text=mem_info.get_available_mem())
@@ -84,9 +103,21 @@ class MemGUI:
     def update_used_percentage(self):
         self.used_mem_percent_label.configure(text=mem_info.get_mem_used_percentage())
 
+    def update_swap_used(self):
+        self.swap_used_label.configure(text=mem_info.get_swap_used())
+
+    def update_swap_free(self):
+        self.swap_free_label.configure(text=mem_info.get_swap_free())
+
+    def update_swap_percentage(self):
+        self.swap_used_percent.configure(text=mem_info.get_swap_used_percent())
+
     def updater(self):
         self.update_avail_mem()
         self.update_used_mem()
         self.update_free_mem()
         self.update_used_percentage()
+        self.update_swap_used()
+        self.update_swap_free()
+        self.update_swap_percentage()
         self.master.after(1000, self.updater)
