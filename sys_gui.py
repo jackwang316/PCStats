@@ -1,4 +1,6 @@
 from tkinter import *
+
+import cpu_gui
 import sys_info
 import mem_gui
 
@@ -64,4 +66,5 @@ class SysGui:
 
 SysGui(root)
 mem_gui.MemGUI(root)
+cpu_gui.CPUGui(root)
 root.mainloop()
