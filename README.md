@@ -7,3 +7,6 @@
 1. Clone the repo to your local machine
 2. Install tkinter using pip
 3. Run python main.py
+
+## Note:
+- Battery information will be empty for those on desktops
