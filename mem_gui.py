@@ -12,13 +12,13 @@ class MemGUI:
     mem_frame = None
     master = None
 
-    available_mem_label = None
-    used_mem_label = None
-    used_mem_percent_label = None
-    free_mem_label = None
+    available_mem_val = None
+    used_mem_val = None
+    used_mem_percent_val = None
+    free_mem_val = None
 
-    swap_used_label = None
-    swap_free_label = None
+    swap_used_val = None
+    swap_free_val = None
     swap_used_percent = None
 
     def __init__(self, master):
@@ -32,7 +32,7 @@ class MemGUI:
     def init_frame(self):
         self.mem_frame = LabelFrame(self.master, width=595, height=150, background="white", fg="DodgerBlue3",
                                     text="Memory Information", font="Arial 20")
-        self.mem_frame.pack(side=TOP, pady=(10, 10))
+        self.mem_frame.pack(side=TOP, pady=LABEL_PAD_X_EAST)
         self.mem_frame.grid_propagate(0)
 
     def init_titles(self):
@@ -64,21 +64,21 @@ class MemGUI:
                               text=mem_info.get_total_mem(), font="Arial 11")
         total_mem_val.grid(sticky="n", column=1, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
 
-        self.available_mem_label = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
-                                         text=mem_info.get_available_mem(), font="Arial 11")
-        self.available_mem_label.grid(sticky="n", column=2, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
+        self.available_mem_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
+                                       text=mem_info.get_available_mem(), font="Arial 11")
+        self.available_mem_val.grid(sticky="n", column=2, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
 
-        self.used_mem_label = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
-                                    text=mem_info.get_used_mem(), font="Arial 11")
-        self.used_mem_label.grid(sticky="n", column=3, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
+        self.used_mem_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
+                                  text=mem_info.get_used_mem(), font="Arial 11")
+        self.used_mem_val.grid(sticky="n", column=3, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
 
-        self.free_mem_label = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
-                                    text=mem_info.get_mem_free(), font="Arial 11")
-        self.free_mem_label.grid(sticky="n", column=4, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
+        self.free_mem_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
+                                  text=mem_info.get_mem_free(), font="Arial 11")
+        self.free_mem_val.grid(sticky="n", column=4, row=1, pady=LABEL_PAD_Y, padx=LABEL_PAD_X_EAST)
 
-        self.used_mem_percent_label = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
-                                            text=mem_info.get_mem_used_percentage(), font="Arial 11")
-        self.used_mem_percent_label.grid(sticky="n", column=5, row=1, pady=LABEL_PAD_Y, padx=(10, 0))
+        self.used_mem_percent_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
+                                          text=mem_info.get_mem_used_percentage(), font="Arial 11")
+        self.used_mem_percent_val.grid(sticky="n", column=5, row=1, pady=LABEL_PAD_Y, padx=(10, 0))
 
     def init_swap_vals(self):
         total_swap_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
@@ -89,35 +89,35 @@ class MemGUI:
                                    text="NONE", font="Arial 11")
         available_swap_val.grid(sticky="n", column=2, row=2, pady=(10, 2), padx=LABEL_PAD_X_EAST)
 
-        self.swap_used_label = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
-                                     text=mem_info.get_swap_used(), font="Arial 11")
-        self.swap_used_label.grid(sticky="n", column=3, row=2, pady=(10, 2), padx=LABEL_PAD_X_EAST)
+        self.swap_used_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
+                                   text=mem_info.get_swap_used(), font="Arial 11")
+        self.swap_used_val.grid(sticky="n", column=3, row=2, pady=(10, 2), padx=LABEL_PAD_X_EAST)
 
-        self.swap_free_label = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
-                                     text=mem_info.get_swap_free(), font="Arial 11")
-        self.swap_free_label.grid(sticky="n", column=4, row=2, pady=(10, 2), padx=LABEL_PAD_X_EAST)
+        self.swap_free_val = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
+                                   text=mem_info.get_swap_free(), font="Arial 11")
+        self.swap_free_val.grid(sticky="n", column=4, row=2, pady=(10, 2), padx=LABEL_PAD_X_EAST)
 
         self.swap_used_percent = Label(self.mem_frame, fg="DodgerBlue3", height=LABEL_HEIGHT, width=LABEL_WIDTH,
                                        text=mem_info.get_swap_used_percent(), font="Arial 11")
         self.swap_used_percent.grid(sticky="n", column=5, row=2, pady=(10, 2), padx=(10, 0))
 
     def update_avail_mem(self):
-        self.available_mem_label.configure(text=mem_info.get_available_mem())
+        self.available_mem_val.configure(text=mem_info.get_available_mem())
 
     def update_used_mem(self):
-        self.used_mem_label.configure(text=mem_info.get_used_mem())
+        self.used_mem_val.configure(text=mem_info.get_used_mem())
 
     def update_free_mem(self):
-        self.free_mem_label.configure(text=mem_info.get_mem_free())
+        self.free_mem_val.configure(text=mem_info.get_mem_free())
 
     def update_used_percentage(self):
-        self.used_mem_percent_label.configure(text=mem_info.get_mem_used_percentage())
+        self.used_mem_percent_val.configure(text=mem_info.get_mem_used_percentage())
 
     def update_swap_used(self):
-        self.swap_used_label.configure(text=mem_info.get_swap_used())
+        self.swap_used_val.configure(text=mem_info.get_swap_used())
 
     def update_swap_free(self):
-        self.swap_free_label.configure(text=mem_info.get_swap_free())
+        self.swap_free_val.configure(text=mem_info.get_swap_free())
 
     def update_swap_percentage(self):
         self.swap_used_percent.configure(text=mem_info.get_swap_used_percent())
