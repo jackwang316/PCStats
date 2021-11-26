@@ -12,6 +12,7 @@ class CPUGui:
         self.init_frame()
         self.init_titles()
         self.init_cpu_vals()
+        self.cpu_updater()
 
     def init_frame(self):
         self.cpu_frame = LabelFrame(self.master, width=600, height=120, background="white", fg="DodgerBlue3",
@@ -42,20 +43,27 @@ class CPUGui:
     def init_cpu_vals(self):
         cpu_name_label = Label(self.cpu_frame, background="white", fg="DodgerBlue3", text=cpu_stats.get_processor(),
                                font="Arial 12", anchor="e")
-        cpu_name_label.grid(sticky="E", column=1, row=0, pady=(0, 2), padx=(170, 4))
+        cpu_name_label.grid(sticky="E", column=1, row=0, pady=(0, 2), padx=(174, 4))
 
         self.cpu_usage_label = Label(self.cpu_frame, background="white", fg="DodgerBlue3",
                                      text=str(cpu_stats.get_total_cpu_usage()) + "%", font="Arial 12", anchor="e")
-        self.cpu_usage_label.grid(sticky="E", column=1, row=1, pady=(0, 2), padx=(170, 4))
+        self.cpu_usage_label.grid(sticky="E", column=1, row=1, pady=(0, 2), padx=(174, 4))
 
         cpu_freq_label = Label(self.cpu_frame, background="white", fg="DodgerBlue3", text=cpu_stats.get_total_cpu_freq(),
                                font="Arial 12", anchor="e")
-        cpu_freq_label.grid(sticky="E", column=1, row=2, pady=(0, 2), padx=(170, 4))
+        cpu_freq_label.grid(sticky="E", column=1, row=2, pady=(0, 2), padx=(174, 4))
 
         cpu_phys_label = Label(self.cpu_frame, background="white", fg="DodgerBlue3", text=cpu_stats.get_phys_core_count(),
                                font="Arial 12", anchor="e")
-        cpu_phys_label.grid(sticky="E", column=1, row=3, pady=(0, 2), padx=(170, 4))
+        cpu_phys_label.grid(sticky="E", column=1, row=3, pady=(0, 2), padx=(174, 4))
 
         cpu_logic_label = Label(self.cpu_frame, background="white", fg="DodgerBlue3",
                                 text=cpu_stats.get_logical_core_count(), font="Arial 12", anchor="e")
-        cpu_logic_label.grid(sticky="E", column=1, row=4, pady=(0, 2), padx=(170, 4))
+        cpu_logic_label.grid(sticky="E", column=1, row=4, pady=(0, 2), padx=(174, 4))
+
+    def update_cpu_usage(self):
+        self.cpu_usage_label.configure(text=str(cpu_stats.get_total_cpu_usage()) + "%")
+
+    def cpu_updater(self):
+        self.update_cpu_usage()
+        self.master.after(4000, self.cpu_updater)
