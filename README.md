@@ -6,4 +6,8 @@
 ## To run the application:
 1. Clone the repo to your local machine
 2. Install tkinter using pip
-3. Run python main.py
+3. Install psutil using pip
+4. Run python main.py
+
+## Note:
+- Battery information will be empty for those on desktops
