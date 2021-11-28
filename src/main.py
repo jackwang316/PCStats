@@ -8,7 +8,6 @@ from tkinter import *
 def main():
     root = Tk()
     root.title("PC Statistics")
-    root.geometry("640x720")
     root.configure(background="white")
 
     sys_gui.SysGui(root)

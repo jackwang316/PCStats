@@ -29,12 +29,12 @@ class NetGui:
     def init_frame(self):
         self.net_frame = LabelFrame(self.master, width=285, height=150, background="white", fg="DodgerBlue3",
                                     text="Network I/O", font="Arial 20")
-        self.net_frame.pack(side=LEFT, anchor="n", pady=(10, 10), padx=(20, 0))
+        self.net_frame.pack(side=LEFT, anchor="n", pady=(10, 10), padx=(10, 10))
         self.net_frame.grid_propagate(0)
 
         self.net_err_frame = LabelFrame(self.master, width=285, height=150, background="white", fg="DodgerBlue3",
                                         text="Network Error", font="Arial 20")
-        self.net_err_frame.pack(side=TOP, anchor="e", pady=(10, 10), padx=(0, 20))
+        self.net_err_frame.pack(side=TOP, anchor="e", pady=(10, 10), padx=(10, 10))
         self.net_err_frame.grid_propagate(0)
 
     def init_net_titles(self):
